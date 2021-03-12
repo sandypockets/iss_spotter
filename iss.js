@@ -20,7 +20,7 @@ const fetchCoordsByIP = function(ip, callback) {
   request(`https://freegeoip.app/json/${ip}`, function(error, response, body) {
     if (error) {
       return callback(error, null);
-    } 
+    }
     
     if (response.statusCode !== 200) {
       const errMsg = `Status Code ${response.statusCode} when fetching IP coordinates. Response: ${body}`;
@@ -28,17 +28,17 @@ const fetchCoordsByIP = function(ip, callback) {
     }
     
     const ipLatLon = {};
-      ipLatLon.latitude = JSON.parse(body).latitude;
-      ipLatLon.longitude = JSON.parse(body).longitude;
-      if (ipLatLon) {
-        callback(null, ipLatLon);
-      }
+    ipLatLon.latitude = JSON.parse(body).latitude;
+    ipLatLon.longitude = JSON.parse(body).longitude;
+    if (ipLatLon) {
+      callback(null, ipLatLon);
+    }
   });
 };
 
 
-const fetchISSFlyOverTimes = function (ipLatLon, callback) {
-  request(`http://api.open-notify.org/iss-pass.json?lat=${ipLatLon.latitude}&lon=${ipLatLon.longitude}&n=5`, function (error, response, body) {
+const fetchISSFlyOverTimes = function(ipLatLon, callback) {
+  request(`http://api.open-notify.org/iss-pass.json?lat=${ipLatLon.latitude}&lon=${ipLatLon.longitude}&n=5`, function(error, response, body) {
     if (error) return callback(error, null);
 
     if (response.statusCode !== 200) {
