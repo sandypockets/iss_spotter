@@ -16,4 +16,7 @@ const convertPassTimes = (passTimes) => {
     .then((passTimes) => {
       let flyOvers = JSON.parse(passTimes).response;
       convertPassTimes(flyOvers);
+    })
+    .catch((error) => {
+      console.log("It didn't work: ", error.message);
     });
